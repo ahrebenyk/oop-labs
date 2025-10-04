@@ -29,19 +29,19 @@ Detail::~Detail()  {
   // cout << "call destructor" << endl;
 }
 
-void Detail::setManufacturer(string& detailManufacturer) {
+void Detail::setManufacturer(const string& detailManufacturer) {
   manufacturer = detailManufacturer;
 }
 
-string Detail::getManufacturer() {
+string Detail::getManufacturer() const {
   return manufacturer;
 }
 
-void Detail::setSerialNumber(string& detailSerialNumber) {
+void Detail::setSerialNumber(const string& detailSerialNumber) {
   serialNumber = detailSerialNumber;
 }
 
-string Detail::getSerialNumber() {
+string Detail::getSerialNumber() const {
   return serialNumber;
 }
 
@@ -70,18 +70,16 @@ string Detail::getFullDescription() const {
   return "Manufacturer: " + manufacturer + "\nSerial number: " + serialNumber + "\nType: " + getType() + "\n";
 }
 
-void Detail::operator = (int detailType) {
-  type = static_cast<DetailType>(detailType);
-}
-
-void Detail::operator + (const string& detailManufacturer) {
-  manufacturer = detailManufacturer;
-}
-
-void Detail::operator += (const string& detailSerialNumber) {
-  serialNumber = detailSerialNumber;
-}
-
 ostream& operator << (ostream& out, const Detail& d) {
   return out << d.getFullDescription();
 }
+
+void Detail::operator = (const string& detailSerialNumber) {
+  serialNumber = detailSerialNumber;
+}
+
+bool Detail::operator == (const Detail& d) const {
+  return this->getSerialNumber() == d.serialNumber;
+}
+
+

@@ -21,12 +21,11 @@ public:
   string getFullDescription() const;
   void setType(int);
   string getType() const;
-  void setManufacturer(string&);
-  string getManufacturer();
-  void setSerialNumber(string&);
-  string getSerialNumber();
-  void operator = (int);
-  void operator + (const string&);
-  void operator += (const string&);
+  void setManufacturer(const string&);
+  string getManufacturer() const;
+  void setSerialNumber(const string&);
+  string getSerialNumber() const;
   friend ostream& operator << (ostream& out, const Detail& d);
+  void operator = (const string&);
+  bool operator == (const Detail&) const;
 };
